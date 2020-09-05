@@ -31,9 +31,9 @@ namespace Nez.Console
 		const float OPACITY = 0.65f;
 
 		// render constants
-		const int LINE_HEIGHT = 10;
-		const int TEXT_PADDING_X = 5;
-		const int TEXT_PADDING_Y = 4;
+		readonly int LINE_HEIGHT = 10;
+		readonly int TEXT_PADDING_X = 5;
+		readonly int TEXT_PADDING_Y = 4;
 
 		/// <summary>
 		/// separation of the command entry and history boxes
@@ -66,10 +66,11 @@ namespace Nez.Console
 		internal RuntimeInspector _runtimeInspector;
 #endif
 
-
 		static DebugConsole()
 		{
 			Instance = new DebugConsole();
+
+			
 		}
 
 
@@ -80,6 +81,8 @@ namespace Nez.Console
 			_commands = new Dictionary<string, CommandInfo>();
 			_sorted = new List<string>();
 			_functionKeyActions = new Action[12];
+
+			LINE_HEIGHT = Graphics.Instance.BitmapFont.LineHeight;
 
 			BuildCommandsList();
 		}
@@ -156,7 +159,7 @@ namespace Nez.Console
 		}
 
 
-		#region Updating and Rendering
+#region Updating and Rendering
 
 		internal void Update()
 		{
@@ -563,10 +566,10 @@ namespace Nez.Console
 			Graphics.Instance.Batcher.End();
 		}
 
-		#endregion
+#endregion
 
 
-		#region Execute
+#region Execute
 
 		void ExecuteCommand(string command, string[] args)
 		{
@@ -589,10 +592,10 @@ namespace Nez.Console
 			Instance._functionKeyActions[functionKey - 1] = action;
 		}
 
-		#endregion
+#endregion
 
 
-		#region Parse Commands
+#region Parse Commands
 
 		void BuildCommandsList()
 		{
@@ -766,7 +769,7 @@ namespace Nez.Console
 		}
 
 
-		#region Parsing Arguments
+#region Parsing Arguments
 
 		static string ArgString(string arg)
 		{
@@ -811,8 +814,8 @@ namespace Nez.Console
 			}
 		}
 
-		#endregion
+#endregion
 
-		#endregion
+#endregion
 	}
 }
