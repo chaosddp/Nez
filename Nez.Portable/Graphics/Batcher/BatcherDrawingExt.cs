@@ -205,10 +205,21 @@ namespace Nez
 		public static void DrawHollowRect(this Batcher batcher, float x, float y, float width, float height,
 		                                  Color color, float thickness = 1)
 		{
-			var tl = new Vector2(x, y).Round();
-			var tr = new Vector2(x + width, y).Round();
-			var br = new Vector2(x + width, y + height).Round();
-			var bl = new Vector2(x, y + height).Round();
+			var tl = new Vector2(x, y);
+			var tr = new Vector2(x + width, y);
+			var br = new Vector2(x + width, y + height);
+			var bl = new Vector2(x, y + height);
+#if MG38
+			tl.Round();
+			tr.Round();
+			br.Round();
+			bl.Round();
+#else
+			tl = tl.Round();
+			tr = tr.Round();
+			br = br.Round();
+			bl = bl.Round();
+#endif
 
 			batcher.SetIgnoreRoundingDestinations(true);
 			batcher.DrawLine(tl, tr, color, thickness);
@@ -237,10 +248,10 @@ namespace Nez
 			DrawHollowRect(batcher, rect.X, rect.Y, rect.Width, rect.Height, color, thickness);
 		}
 
-		#endregion
+#endregion
 
 
-		#region Pixel
+#region Pixel
 
 		public static void DrawPixel(this Batcher batcher, float x, float y, Color color, int size = 1)
 		{
@@ -260,6 +271,6 @@ namespace Nez
             batcher.Draw(Graphics.Instance.PixelTexture, destRect, Graphics.Instance.PixelTexture.SourceRect, color);
 		}
 
-		#endregion
+#endregion
 	}
 }

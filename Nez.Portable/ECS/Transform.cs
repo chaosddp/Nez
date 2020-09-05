@@ -491,7 +491,11 @@ namespace Nez
 		/// </summary>
 		public void RoundPosition()
 		{
+#if MG38
+			Position = Vector2.Round(_position);
+#else
 			Position = _position.Round();
+#endif
 		}
 
 

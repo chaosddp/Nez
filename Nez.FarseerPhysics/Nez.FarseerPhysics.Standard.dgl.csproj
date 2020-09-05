@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">	
+
+  <PropertyGroup>
+    <RootNamespace>Nez.Farseer</RootNamespace>
+    <AssemblyName>Nez.FarseerPhysics</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <IntermediateOutputPath>obj\Nez.FarseerPhysics\$(Configuration)</IntermediateOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Nez.FarseerPhysics.nuspec" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Nez.Portable\Nez.Standard.dgl.csproj" />
+  </ItemGroup>
+  
+</Project>
